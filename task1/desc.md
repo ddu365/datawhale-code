@@ -12,6 +12,9 @@
 3. 实现两个有序的链表合并为一个有序链表
 4. 实现求链表的中间结点
 
+#参考实现
+https://github.com/keon/algorithms
+
 
 # 对应的 LeetCode 练习题
 ## 栈
