@@ -21,29 +21,36 @@ https://github.com/keon/algorithms
 Valid Parentheses（有效的括号）
 - 英文版：https://leetcode.com/problems/valid-parentheses/
 - 中文版：https://leetcode-cn.com/problems/valid-parentheses/
+- mySolution: https://leetcode-cn.com/problems/valid-parentheses/submissions/
 
 Longest Valid Parentheses（最长有效的括号）
 - 英文版：https://leetcode.com/problems/longest-valid-parentheses/
 - 中文版：https://leetcode-cn.com/problems/longest-valid-parentheses/
+- mySolution https://leetcode-cn.com/problems/longest-valid-parentheses/submissions/
 
 Evaluate Reverse Polish Notatio（逆波兰表达式求值）
 - 英文版：https://leetcode.com/problems/evaluate-reverse-polish-notation/
 - 中文版：https://leetcode-cn.com/problems/evaluate-reverse-polish-notation/
+- mySolution https://leetcode-cn.com/problems/evaluate-reverse-polish-notation/submissions/
 
 ## 队列
 Design Circular Deque（设计一个双端队列）
 - 英文版：https://leetcode.com/problems/design-circular-deque/
 - 中文版：https://leetcode-cn.com/problems/design-circular-deque/
+- mySolution https://leetcode-cn.com/problems/design-circular-deque/submissions/
 
 Sliding Window Maximum（滑动窗口最大值）
 - 英文版：https://leetcode.com/problems/sliding-window-maximum/
 - 中文版：https://leetcode-cn.com/problems/sliding-window-maximum/
+- mySolution https://leetcode-cn.com/problems/sliding-window-maximum/submissions/
 
 ## 链表
 Linked List Cycle I（环形链表）
 - 英文版：https://leetcode.com/problems/linked-list-cycle/
 - 中文版：https://leetcode-cn.com/problems/linked-list-cycle/
+- mySolution https://leetcode-cn.com/problems/linked-list-cycle/submissions/
 
 Merge k Sorted Lists（合并 k 个排序链表）
 - 英文版：https://leetcode.com/problems/merge-k-sorted-lists/
 - 中文版：https://leetcode-cn.com/problems/merge-k-sorted-lists/
+- mySolution https://leetcode-cn.com/problems/merge-k-sorted-lists/submissions/
