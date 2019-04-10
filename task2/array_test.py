@@ -1,7 +1,4 @@
 import task2.array as cusArr
-import re
-
-
 
 
 if __name__ == '__main__':
@@ -29,9 +26,5 @@ if __name__ == '__main__':
         print(a.get_capacity())
         # 读
         print(a[0])
-
-        str = "words and 987"
-        a = re.findall(r'^[-+]?\d+', str.strip())  # 正则为：+或-开头出现0或1次，后面为1或多位数字
-        print(a)
     except Exception as e:
         print(f'test happen a error:{e}')

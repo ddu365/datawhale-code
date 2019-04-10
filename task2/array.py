@@ -49,21 +49,3 @@ class DynamicArray:
         for i in range(self._size):
             tmp[i] = self._array[i]
         self._array = tmp
-
-
-# import numpy as np
-# arr = np.arange(0,10)
-#
-# print(arr)
-# print(type(arr))
-#
-#
-# a = [a for a in range(10)]
-# a.insert(3,6)
-# print(a)
-# a.remove(a[3])
-# print(a)
-# a[0] = 11
-# print(a)
-# del a[1]
-# print(a)
