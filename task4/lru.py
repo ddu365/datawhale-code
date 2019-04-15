@@ -2,6 +2,7 @@ from functools import lru_cache
 import urllib
 
 
+# 参考链接: https://leetcode-cn.com/problems/lru-cache/
 class LRUCache:
 
     def __init__(self, capacity: int):
