@@ -86,6 +86,7 @@ class Graph:
                 row.append(self.adj_matrix[u_idx][v_idx])
             print(row)
 
+    # 参考图示 https://www.jianshu.com/p/70952b51f0c8
     def dfs_traverse(self, start):
         stack = [start]
         res = []
@@ -100,6 +101,7 @@ class Graph:
                         stack.append(self.get_vertex(target_idx))
         return res
 
+    # 参考图示 https://www.jianshu.com/p/70952b51f0c8
     def bfs_traverse(self, start):
         queue = [start]
         res = []
@@ -142,7 +144,7 @@ class Graph:
 
 
 if __name__ == '__main__':
-    g = Graph(5)  # , is_directed=True
+    g = Graph(5, is_directed=True)  #
     g.set_vertex(0, 'a')
     g.set_vertex(1, 'b')
     g.set_vertex(2, 'c')

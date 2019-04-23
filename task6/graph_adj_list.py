@@ -16,6 +16,10 @@ class Vertex:
         self._adjacent = {}
         self.visited = False
         # self.previous = None
+        # In_degree Count
+        self._in_degree = 0
+        # Out_degree Count
+        self._out_degree = 0
 
     def add_neighbor(self, nbr, weight=0):
         self._adjacent[nbr] = weight
@@ -37,6 +41,18 @@ class Vertex:
 
     def get_visited(self):
         return self.visited
+
+    def get_in_degree(self):
+        return self._in_degree
+
+    def set_in_degree(self, in_degree):
+        self._in_degree = in_degree
+
+    def get_out_degree(self):
+        return self._out_degree
+
+    def set_out_degree(self, out_degree):
+        self._out_degree = out_degree
 
     def __str__(self):
         return str(self._val) + ' adjacent: ' + str([v.get_vertex_val() for v in self._adjacent.keys()])
@@ -73,6 +89,10 @@ class Graph:
         if not self.is_directed:  # 无向图
             self.vertex_dict[target].add_neighbor(self.vertex_dict[source], weight)
 
+        if self.is_directed:  # 只有有向图才记录顶点的入度与出度
+            self.get_vertex(source).set_out_degree(self.get_vertex(source).get_out_degree() + 1)
+            self.get_vertex(target).set_in_degree(self.get_vertex(target).get_in_degree() + 1)
+
     def get_vertices(self):
         return self.vertex_dict.keys()
 
@@ -85,6 +105,7 @@ class Graph:
                 edges.append((u_val, v_val, u.get_weight(v)))  # 无向图时(u,v,w)与(v,u,w)表示同一条边
         return edges
 
+    # 参考图示 https://www.jianshu.com/p/70952b51f0c8
     def dfs_traverse(self, start):
         stack = [start]
         res = []
@@ -98,6 +119,7 @@ class Graph:
                         stack.append(next_v_node)
         return res
 
+    # 参考图示 https://www.jianshu.com/p/70952b51f0c8
     def bfs_traverse(self, start):
         queue = [start]
         res = []
@@ -110,6 +132,47 @@ class Graph:
                     if not next_v_node.get_visited():
                         queue.append(next_v_node)
         return res
+
+    # 拓扑排序是针对有向无环图(DAG)的一种排序
+    # Kahn思想:
+    # 不断的寻找有向图中没有前驱(入度为0)的顶点，将之输出。
+    # 然后从有向图中删除所有以此顶点为尾的弧。
+    # 重复操作，直至图空，或者找不到没有前驱的顶点为止
+    def topo_kahn(self):
+        kahn_out = []
+        in_0 = []  # 入度为0的顶点
+        for v_val in self.get_vertices():
+            v_obj = self.get_vertex(v_val)
+            if v_obj.get_in_degree() == 0:
+                in_0.append(v_obj)
+        while in_0:
+            u_obj = in_0.pop()
+            kahn_out.append(u_obj.get_vertex_val())
+            for v_obj in u_obj.get_connections():
+                v_obj.set_in_degree(v_obj.get_in_degree() - 1)
+                if v_obj.get_in_degree() == 0:
+                    in_0.append(v_obj)
+        return kahn_out
+
+    # 参考链接: https://blog.csdn.net/pandora_madara/article/details/26478385
+    def topo_dfs(self):
+        dfs_out = []
+
+        def dfs(u_obj):
+            for v_obj in u_obj.get_connections():
+                if not v_obj.get_visited():
+                    v_obj.set_visited()
+                    dfs(v_obj)
+            dfs_out.append(u_obj.get_vertex_val())
+
+        for u_val in self.get_vertices():
+            u_obj = self.get_vertex(u_val)
+            if not u_obj.get_visited():
+                u_obj.set_visited()
+                dfs(u_obj)
+
+        dfs_out.reverse()
+        return dfs_out
 
     # 求给定源顶点src到各顶点的最短路径，也叫单源最短路径
     # 参考链接：
@@ -138,7 +201,7 @@ class Graph:
 
 
 if __name__ == '__main__':
-    g = Graph()  # is_directed=True
+    g = Graph(is_directed=True)  # is_directed=True
     g.add_vertex('a')
     g.add_vertex('b')
     g.add_vertex('c')
@@ -151,12 +214,28 @@ if __name__ == '__main__':
     g.add_edge('c', 'd', 4)
     g.add_edge('d', 'e', 4)
 
+
+    # g.add_vertex('v1')
+    # g.add_vertex('v2')
+    # g.add_vertex('v3')
+    # g.add_vertex('v4')
+    # g.add_vertex('v5')
+    # g.add_edge('v2', 'v1')
+    # g.add_edge('v1', 'v5')
+    # g.add_edge('v4', 'v2')
+    # g.add_edge('v4', 'v5')
+    # g.add_edge('v3', 'v1')
+    # g.add_edge('v3', 'v5')
+
     # dfs时g的所有顶点已被访问过
-    cp_g = copy.deepcopy(g)
+    cp_bfs = copy.deepcopy(g)
+    cp_dfs = copy.deepcopy(g)
 
     print(g.get_vertices())
     print(g.get_edges())
 
     print('[dfs]', g.dfs_traverse(g.get_vertex('a')))
-    print('[bfs]', cp_g.bfs_traverse(cp_g.get_vertex('a')))
+    print('[bfs]', cp_bfs.bfs_traverse(cp_bfs.get_vertex('a')))
     print('[dijkstra]', g.dijkstra(g.get_vertex('a')))
+    print('[topo_kahn]', g.topo_kahn())
+    print('[topo_dfs]', cp_dfs.topo_dfs())
