@@ -24,6 +24,7 @@
 Regular Expression Matching（正则表达式匹配）
 - 英文版：https://leetcode.com/problems/regular-expression-matching/
 - 中文版：https://leetcode-cn.com/problems/regular-expression-matching/
+- **参考: http://www.imooc.com/article/281353**
 
 Minimum Path Sum（最小路径和）
 - 英文版：https://leetcode.com/problems/minimum-path-sum/
